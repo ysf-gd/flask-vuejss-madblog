@@ -1,10 +1,15 @@
 from flask import Flask
+from flask_cors import CORS
 from config import Config
 
 # 使用应用工厂函数创建Flask应用
 def create_app(config_class = Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
+
+
+    # enable CORS
+    CORS(app)
 
     # 注册blueprint
     from app.api import bp as api_bp
